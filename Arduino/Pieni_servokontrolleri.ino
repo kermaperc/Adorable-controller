@@ -3,7 +3,7 @@
 Servo leftServo;  // Creating servo-objects for controlling the motors
 Servo rightServo;
 static int motor; // 1 = right, 2 = left
-static int pwm;
+static int pwm;   // power up between 0 and 255
 unsigned long time;
 int leftMid;
 int rightMid;
@@ -12,8 +12,8 @@ void setup() {
   time = millis();
   Serial.begin(9600);     // Opening the serial port. Sets data rate to 9600bps (default).
   Serial.println("Pieni servokontrolleri :3");
-  leftServo.attach(13);   // Attaches the Servo-object on pin 5 (left motor).
-  rightServo.attach(11);  // Attaches the Servo-object on pin 6 (right motor).
+  leftServo.attach(5);   // Attaches the Servo-object on pin 5 (left motor).
+  rightServo.attach(6);  // Attaches the Servo-object on pin 6 (right motor).
   leftMid = 80;
   rightMid = 80;
   leftServo.write(leftMid);
@@ -56,6 +56,7 @@ void serialPorts() {
         pwm = 0;
         }
         break;
+        // ie. R240XL100X gives Right servo the value of 240, and left servo to 100
     }
   }
 }
