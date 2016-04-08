@@ -1,2 +1,2 @@
 # Adorable-controller
-bluetoots servo controller app for android
+Bluetoots servo controller app for android
