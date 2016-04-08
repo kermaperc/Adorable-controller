@@ -14,7 +14,7 @@ void setup() {
   Serial.println("Pieni servokontrolleri :3");
   leftServo.attach(5);   // Attaches the Servo-object on pin 5 (left motor).
   rightServo.attach(6);  // Attaches the Servo-object on pin 6 (right motor).
-  leftMid = 80;
+  leftMid = 89;
   rightMid = 80;
   leftServo.write(leftMid);
   rightServo.write(rightMid);
@@ -36,6 +36,8 @@ void serialPorts() {
     serialData = Serial.read();
     
     switch(serialData) {
+     // When receiving an int between 0-9, pwm is multiplied by 10 and received value is added
+     // ie. L140: L -> leftServo pwm = 0*10+1, pwm = 1*10+4, pwm = 14*10+0. leftServo.write(140-1);
       case '0'...'9':
         pwm = pwm * 10 + (serialData -'0');
         break;       
@@ -57,6 +59,7 @@ void serialPorts() {
         }
         break;
         // ie. R240XL100X gives Right servo the value of 240, and left servo to 100
+        // ! leftMid = 89; -> pwm-1, rightMid = 80; -> pwm-10
     }
   }
 }
